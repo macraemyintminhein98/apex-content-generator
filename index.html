@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Content Generator: Real Estate Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: sans-serif; }
+        .container { max-width: 800px; margin: auto; padding: 2rem; }
+        .input-group { margin-bottom: 1rem; }
+        input[type="text"], textarea { width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 0.375rem; }
+        button { background-color: #2563eb; color: white; padding: 0.75rem 1.5rem; border-radius: 0.375rem; cursor: pointer; }
+        button:hover { background-color: #1d4ed8; }
+        .output { background-color: #f3f4f6; padding: 1rem; border-radius: 0.375rem; min-height: 150px; white-space: pre-wrap; word-wrap: break-word; }
+        .error { color: red; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container bg-white shadow-lg rounded-lg">
+        <h1 class="text-3xl font-bold text-center mb-6">Generate Real Estate Content Ideas</h1>
+        <p class="text-center mb-8 text-gray-700">Enter 2-3 keywords to get unique article titles and outlines for your real estate business.</p>
+        
+        <div class="input-group">
+            <label for="keywords" class="block text-gray-700 text-sm font-bold mb-2">Keywords (e.g., 'luxury homes', 'first-time buyer', 'market trends'):</label>
+            <input type="text" id="keywords" placeholder="luxury homes, first-time buyer" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div class="text-center">
+            <button id="generateBtn" class="mt-4">Generate Ideas (Requires Payment)</button>
+        </div>
+
+        <div id="outputSection" class="hidden mt-8">
+            <h2 class="text-xl font-bold mb-4">Your Content Ideas:</h2>
+            <div id="output" class="output"></div>
+            <p id="error" class="error hidden"></p>
+        </div>
+
+        <p class="text-center text-sm text-gray-500 mt-8">Powered by Apex</p>
+    </div>
+
+    <script>
+        document.getElementById('generateBtn').addEventListener('click', async () => {
+            const keywords = document.getElementById('keywords').value;
+            const outputDiv = document.getElementById('output');
+            const errorDiv = document.getElementById('error');
+            const outputSection = document.getElementById('outputSection');
+
+            outputDiv.textContent = 'Generating ideas...';
+            errorDiv.classList.add('hidden');
+            outputSection.classList.remove('hidden');
+
+            try {
+                // In a real app, this would trigger Stripe Checkout and then an API call.
+                // For this static demo, simulate an API call.
+                const response = await new Promise(resolve => setTimeout(() => {
+                    if (keywords.includes('luxury')) {
+                        resolve({
+                            success: true,
+                            data: "1. The Allure of Luxury: What Defines a High-End Home Today\n   - Outline: Explore trends in luxury amenities, smart home tech, and exclusive locations.\n2. Investing in Elegance: The Financial Benefits of Luxury Real Estate\n   - Outline: Discuss appreciation, rental income potential, and market stability.\n3. Navigating the High-End Market: Tips for Luxury Home Buyers and Sellers\n   - Outline: Cover discreet marketing, expert negotiations, and bespoke services."
+                        });
+                    } else {
+                        resolve({
+                            success: false, 
+                            error: 'Payment required to generate ideas for these keywords. Please refresh for a demo.'
+                        });
+                    }
+                }, 2000));
+
+                if (response.success) {
+                    outputDiv.textContent = response.data;
+                } else {
+                    outputDiv.textContent = '';
+                    errorDiv.textContent = response.error;
+                    errorDiv.classList.remove('hidden');
+                }
+            } catch (e) {
+                outputDiv.textContent = '';
+                errorDiv.textContent = 'An unexpected error occurred. Please try again.';
+                errorDiv.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
