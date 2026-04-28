@@ -3,83 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Content Generator: Real Estate Edition</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>💡 Niche Content AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body { font-family: sans-serif; }
-        .container { max-width: 800px; margin: auto; padding: 2rem; }
-        .input-group { margin-bottom: 1rem; }
-        input[type="text"], textarea { width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 0.375rem; }
-        button { background-color: #2563eb; color: white; padding: 0.75rem 1.5rem; border-radius: 0.375rem; cursor: pointer; }
-        button:hover { background-color: #1d4ed8; }
-        .output { background-color: #f3f4f6; padding: 1rem; border-radius: 0.375rem; min-height: 150px; white-space: pre-wrap; word-wrap: break-word; }
-        .error { color: red; margin-top: 1rem; }
+        .container { max-width: 768px; }
     </style>
 </head>
-<body>
-    <div class="container bg-white shadow-lg rounded-lg">
-        <h1 class="text-3xl font-bold text-center mb-6">Generate Real Estate Content Ideas</h1>
-        <p class="text-center mb-8 text-gray-700">Enter 2-3 keywords to get unique article titles and outlines for your real estate business.</p>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="container bg-white p-8 rounded-lg shadow-lg w-full">
+        <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">Generate Content Ideas for Your Niche!</h1>
+        <p class="text-center text-gray-600 mb-8">Struggling with what to post? Get 5 unique article ideas, headlines, and intros instantly.</p>
         
-        <div class="input-group">
-            <label for="keywords" class="block text-gray-700 text-sm font-bold mb-2">Keywords (e.g., 'luxury homes', 'first-time buyer', 'market trends'):</label>
-            <input type="text" id="keywords" placeholder="luxury homes, first-time buyer" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <form id="ideaForm" class="space-y-4">
+            <div>
+                <label for="keywords" class="block text-sm font-medium text-gray-700">Keywords (1-2, e.g., "HVAC repair", "local bakery")</label>
+                <input type="text" id="keywords" name="keywords" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="e.g., 'plumbing tips', 'pizza marketing'" required>
+            </div>
+            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Generate Ideas
+            </button>
+        </form>
+
+        <div id="results" class="mt-8 hidden">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Your Content Ideas:</h2>
+            <div id="output" class="space-y-4 text-gray-700 bg-gray-50 p-4 rounded-md border border-gray-200">
+                <!-- AI generated content will go here -->
+                Loading...
+            </div>
         </div>
 
-        <div class="text-center">
-            <button id="generateBtn" class="mt-4">Generate Ideas (Requires Payment)</button>
+        <div class="mt-8 text-center">
+            <p class="text-sm text-gray-500">Powered by AI. One-time payment for instant access!</p>
+            <button id="buyButton" class="mt-4 py-2 px-6 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Buy Now - $9.99</button>
         </div>
-
-        <div id="outputSection" class="hidden mt-8">
-            <h2 class="text-xl font-bold mb-4">Your Content Ideas:</h2>
-            <div id="output" class="output"></div>
-            <p id="error" class="error hidden"></p>
-        </div>
-
-        <p class="text-center text-sm text-gray-500 mt-8">Powered by Apex</p>
     </div>
 
     <script>
-        document.getElementById('generateBtn').addEventListener('click', async () => {
-            const keywords = document.getElementById('keywords').value;
-            const outputDiv = document.getElementById('output');
-            const errorDiv = document.getElementById('error');
-            const outputSection = document.getElementById('outputSection');
+      // Placeholder for actual API call and Stripe integration
+      document.getElementById('ideaForm').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const keywords = document.getElementById('keywords').value;
+          const resultsDiv = document.getElementById('results');
+          const outputDiv = document.getElementById('output');
+          resultsDiv.classList.remove('hidden');
+          outputDiv.innerHTML = '<p class="text-center">Generating amazing ideas... please wait!</p>';
+          
+          // Simulate API call
+          setTimeout(() => {
+              outputDiv.innerHTML = `
+                  <p class='font-bold'>1. How to Handle Common ${keywords} Emergencies</p>
+                  <p class='italic mb-2'>Intro: Don't panic when a ${keywords} issue strikes! This guide helps you identify and mitigate common problems before they escalate.</p>
+                  <p class='font-bold'>2. The Ultimate Guide to Choosing the Best ${keywords} for Your Business</p>
+                  <p class='italic mb-2'>Intro: Selecting the right ${keywords} can make or break your operations. Learn what to look for to ensure peak performance.</p>
+                  <p class='font-bold'>3. DIY ${keywords} Maintenance Tips to Save You Money</p>
+                  <p class='italic mb-2'>Intro: Regular upkeep of your ${keywords} system doesn't have to be expensive. Discover simple steps you can take yourself.</p>
+                  <p class='font-bold'>4. Why Your ${keywords} Isn't Working: Common Issues & Fixes</p>
+                  <p class='italic mb-2'>Intro: Facing a stubborn ${keywords} problem? We break down the most frequent culprits and offer solutions you can try.</p>
+                  <p class='font-bold'>5. The Future of ${keywords} Technology: What's Next?</p>
+                  <p class='italic mb-2'>Intro: Staying ahead in the ${keywords} industry means understanding emerging trends. Explore the innovations shaping tomorrow.</p>
+              `;
+          }, 3000);
+      });
 
-            outputDiv.textContent = 'Generating ideas...';
-            errorDiv.classList.add('hidden');
-            outputSection.classList.remove('hidden');
-
-            try {
-                // In a real app, this would trigger Stripe Checkout and then an API call.
-                // For this static demo, simulate an API call.
-                const response = await new Promise(resolve => setTimeout(() => {
-                    if (keywords.includes('luxury')) {
-                        resolve({
-                            success: true,
-                            data: "1. The Allure of Luxury: What Defines a High-End Home Today\n   - Outline: Explore trends in luxury amenities, smart home tech, and exclusive locations.\n2. Investing in Elegance: The Financial Benefits of Luxury Real Estate\n   - Outline: Discuss appreciation, rental income potential, and market stability.\n3. Navigating the High-End Market: Tips for Luxury Home Buyers and Sellers\n   - Outline: Cover discreet marketing, expert negotiations, and bespoke services."
-                        });
-                    } else {
-                        resolve({
-                            success: false, 
-                            error: 'Payment required to generate ideas for these keywords. Please refresh for a demo.'
-                        });
-                    }
-                }, 2000));
-
-                if (response.success) {
-                    outputDiv.textContent = response.data;
-                } else {
-                    outputDiv.textContent = '';
-                    errorDiv.textContent = response.error;
-                    errorDiv.classList.remove('hidden');
-                }
-            } catch (e) {
-                outputDiv.textContent = '';
-                errorDiv.textContent = 'An unexpected error occurred. Please try again.';
-                errorDiv.classList.remove('hidden');
-            }
-        });
+      document.getElementById('buyButton').addEventListener('click', () => {
+          alert('Stripe Checkout integration would go here!'); 
+      });
     </script>
 </body>
 </html>
