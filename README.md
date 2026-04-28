@@ -1,5 +1,7 @@
-# Apex Content Generator: Real Estate Edition
+# Apex Content Generator
 
-Generate unique real estate article titles and outlines with AI. 
+Struggling to find content ideas for your niche business? This simple web app helps small business owners, niche content creators, and local service providers generate relevant blog post/article ideas, headlines, and introductory paragraphs instantly.
 
-Simply input 2-3 keywords, and get tailored content ideas for your blog or social media. Perfect for local real estate agents looking to enhance their online presence. Payment is required for idea generation due to API costs, but a demo response is available for certain keywords for illustrative purposes.
+Simply enter 1-2 keywords related to your niche (e.g., 'HVAC repair', 'local bakery') and get 5 highly specific content ideas, complete with captivating headlines and a 2-3 sentence intro paragraph. 
+
+Save time, boost your online presence, and connect with your audience without the hassle of hiring an agency.
